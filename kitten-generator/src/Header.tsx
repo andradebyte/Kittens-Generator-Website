@@ -12,12 +12,11 @@ export default function Header() {
                     <div className='logoIcon'>
                         <FaCat size={32} />
                     </div>
-                    {/* <h1 id='titleLogo'>Kitten Generator</h1> */}
                 </div>
                 <nav>
                     <ul>
                         <li><a href="#home"><IoMdPhotos size={24} /></a></li>
-                        <li><a href="https://github.com/andradebyte/Kittens-Generator-Web" target='_blank' rel='noreferrer'><GrGithub size={24} /></a></li>
+                        <li><a href="https://github.com/andradebyte/Kittens-Generator-Website" target='_blank' rel='noreferrer'><GrGithub size={24} /></a></li>
                     </ul>
                 </nav>
             </div>
