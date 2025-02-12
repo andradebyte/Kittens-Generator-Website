@@ -82,3 +82,28 @@
     transform: scale(1.1);
     background-color: #5b00c3;
 }
+
+.liked-kittens {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: center;
+    padding: 1rem;
+    list-style-type: none;
+}
+
+.liked-kittens-items {
+    height: 150px;
+    width: 150px;
+    border-radius: 20px;
+    margin: 0.5rem;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.liked-kittens-items:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

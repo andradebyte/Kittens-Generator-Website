@@ -43,6 +43,20 @@ export default function Generator() {
         console.log('A user generated a new image!');
     };
 
+    // Dentro do seu componente Generator
+
+    // Estado para armazenar os kittens curtidos
+    const [likedKittens, setLikedKittens] = useState(() => {
+        // Inicializa o estado lendo do localStorage, se existir
+        const stored = localStorage.getItem('likedKittens');
+        return stored ? JSON.parse(stored) : [];
+    });
+
+    // useEffect para atualizar o localStorage sempre que likedKittens mudar
+    useEffect(() => {
+        localStorage.setItem('likedKittens', JSON.stringify(likedKittens));
+    }, [likedKittens]);
+
     const handleLike = () => {
         setImages(prevImages => {
             const newImages = [...prevImages];
@@ -51,15 +65,26 @@ export default function Generator() {
         });
         console.log('A user liked the actual image!');
 
+        const kittenUrl = images[counter].url;
+
+        // Atualiza o estado apenas se o item não estiver presente
+        setLikedKittens((prevLikedKittens: string[]) => {
+            if (!prevLikedKittens.includes(kittenUrl)) {
+                return [...prevLikedKittens, kittenUrl];
+            }
+            return prevLikedKittens;
+        });
+
         // Adiciona um coração flutuante (gerando um ID único)
         const id = Date.now();
         setFloatingHearts(prev => [...prev, id]);
 
-        // Remove o coração após 2 segundos (duração da animação)
         setTimeout(() => {
             setFloatingHearts(prev => prev.filter(heartId => heartId !== id));
         }, 2000);
     };
+
+
 
     return (
         <div className="Generator">

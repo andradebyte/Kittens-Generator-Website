@@ -10,6 +10,9 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const toggleSidebar = () => setIsOpen(!isOpen);
 
+    const likedKittens = localStorage.getItem('likedKittens');
+    const likedKittensArray = likedKittens ? JSON.parse(likedKittens) : [];
+
     return (
         <>
             <header className="header">
@@ -46,7 +49,15 @@ export default function Header() {
                     <h3>Your 'Meow'llery!</h3>
                     <IoCloseSharp onClick={toggleSidebar} size={28} />
                 </header>
-
+                <main>
+                    <ul className='liked-kittens'>
+                        {likedKittensArray.map((kittenUrl: string) => (
+                            <li key={kittenUrl}>
+                                <img src={kittenUrl} className='liked-kittens-items' alt="Liked kitten" />
+                            </li>
+                        ))}
+                    </ul>
+                </main>
             </aside>
         </>
     );
