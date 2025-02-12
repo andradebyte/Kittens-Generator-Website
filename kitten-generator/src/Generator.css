@@ -92,6 +92,8 @@
     text-align: center;
     padding: 1rem;
     list-style-type: none;
+    overflow-y: scroll;
+    height: 85vh;
 }
 
 .liked-kittens-items {
