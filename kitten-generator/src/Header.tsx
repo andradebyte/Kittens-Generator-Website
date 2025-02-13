@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.css';
 import './Sidebar.css';
 import { FaCat } from "react-icons/fa6";
@@ -13,12 +13,21 @@ export default function Header() {
     const likedKittens = localStorage.getItem('likedKittens');
     const likedKittensArray = likedKittens ? JSON.parse(likedKittens) : [];
 
+    const playMusic = () => {
+        try {
+            const audio = new Audio('/meow-song.mp3');
+            audio.play();
+        } catch (error) {
+            console.error('Could not play audio:', error);
+        }
+    };
+
     return (
         <>
             <header className="header">
                 <div className="header-container">
                     <div className="logo">
-                        <div className="logoIcon">
+                        <div className="logoIcon" onClick={playMusic}>
                             <FaCat size={32} />
                         </div>
                     </div>

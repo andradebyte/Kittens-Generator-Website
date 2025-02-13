@@ -5,6 +5,17 @@ import jsonData from './data.json';
 
 export default function Generator() {
 
+    //Meow counter:
+    const [meowCounter, setMeowCounter] = useState(0);
+
+    //Color change on meow counter:
+    const [color, setColor] = useState([`#FF0000`, `#FF7F00`, `#FFFF00`, `#00FF00`, `#B148E8`, `#E848A2`, `#E84948`, `#45C4B0`, `#9AEBA3`, `#DAFDBA`, `#FF4858`]);
+
+    const chooseColor = () => {
+        return color[Math.floor(Math.random() * color.length)];
+    }
+    // Função para embaralhar um array
+
     const shuffleArray = (array: any[]): any[] => {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -84,20 +95,27 @@ export default function Generator() {
         }, 2000);
     };
 
-
+    const playMeow = (number: number) => {
+        try {
+            const audio = new Audio(`/meow${number}.mp3`);
+            audio.play();
+        } catch (error) {
+            console.error('Could not play audio:', error);
+        }
+    }
 
     return (
         <div className="Generator">
             <div>
-                <a href={image} target='_blank' rel='noreferrer'>
-                    <img src={image} alt="Generated kitten" />
-                    {/* Renderiza os corações flutuantes */}
-                    {floatingHearts.map(id => (
-                        <span key={id} className="floating-heart">
-                            <FaHeart size={16} color="red" />
-                        </span>
-                    ))}
-                </a>
+
+                <img src={image} alt="Generated kitten" onClick={() => { setMeowCounter(meowCounter + 1); playMeow(Math.floor(Math.random() * 6) + 1) }} />
+                {/* Renderiza os corações flutuantes */}
+                {floatingHearts.map(id => (
+                    <span key={id} className="floating-heart">
+                        <FaHeart size={16} color="red" />
+                    </span>
+                ))}
+
             </div>
             <div className='buttonGeneratorContainer'>
                 <button onClick={handleNextImage} className='buttonItemsGenerator'>
@@ -106,6 +124,9 @@ export default function Generator() {
                 <button onClick={handleLike} className='buttonItemsGenerator'>
                     <FaHeart size={22} />
                 </button>
+            </div>
+            <div className='meowSubtitle'>
+                The cat meowed <span className='meowCounter' style={{ color: chooseColor() }}>{meowCounter}</span> times!
             </div>
         </div>
     );
