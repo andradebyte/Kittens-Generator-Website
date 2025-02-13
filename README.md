@@ -6,6 +6,8 @@ This is a simple React.js project that generates random kitten images. Users can
 
 ## Project Structure
 
+/src ├── App.js // Main app component that renders Header and Generator ├── Header.js // Displays the header with the logo and sidebar toggle ├── Generator.js // Handles image generation, liking, and audio ├── data.json // Local JSON file containing kitten image URLs ├── App.css // Global styles ├── Header.css // Styles for the header and navigation ├── Sidebar.css // Styles for the animated sidebar └── Generator.css // Styles for the image generator and floating hearts
+
 ---
 
 ## Key Features
