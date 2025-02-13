@@ -11,11 +11,11 @@ export default function Generator() {
     //Color change on meow counter:
     const [color, setColor] = useState([`#FF0000`, `#FF7F00`, `#FFFF00`, `#00FF00`, `#B148E8`, `#E848A2`, `#E84948`, `#45C4B0`, `#9AEBA3`, `#DAFDBA`, `#FF4858`]);
 
-    const chooseColor = () => {
+    const randomColor = () => {
         return color[Math.floor(Math.random() * color.length)];
     }
-    // Função para embaralhar um array
 
+    // Função para embaralhar um array
     const shuffleArray = (array: any[]): any[] => {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -107,7 +107,6 @@ export default function Generator() {
     return (
         <div className="Generator">
             <div>
-
                 <img src={image} alt="Generated kitten" onClick={() => { setMeowCounter(meowCounter + 1); playMeow(Math.floor(Math.random() * 6) + 1) }} />
                 {/* Renderiza os corações flutuantes */}
                 {floatingHearts.map(id => (
@@ -115,7 +114,6 @@ export default function Generator() {
                         <FaHeart size={16} color="red" />
                     </span>
                 ))}
-
             </div>
             <div className='buttonGeneratorContainer'>
                 <button onClick={handleNextImage} className='buttonItemsGenerator'>
@@ -126,7 +124,7 @@ export default function Generator() {
                 </button>
             </div>
             <div className='meowSubtitle'>
-                The cat meowed <span className='meowCounter' style={{ color: chooseColor() }}>{meowCounter}</span> times!
+                The cat meowed <span className='meowCounter' style={{ color: randomColor() }}>{meowCounter}</span> times!
             </div>
         </div>
     );

@@ -62,7 +62,9 @@ export default function Header() {
                     <ul className='liked-kittens'>
                         {likedKittensArray.map((kittenUrl: string) => (
                             <li key={kittenUrl}>
-                                <img src={kittenUrl} className='liked-kittens-items' alt="Liked kitten" />
+                                <a href={kittenUrl} target="_blank" rel="noreferrer">
+                                    <img src={kittenUrl} className='liked-kittens-items' alt="Liked kitten" />
+                                </a>
                             </li>
                         ))}
                     </ul>
